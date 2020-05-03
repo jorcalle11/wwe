@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "start": "node index.js",
-    "scraping": "node src/scraping.js"
+    "scraping": "node src/index.js"
   },
   "repository": {
     "type": "git",
