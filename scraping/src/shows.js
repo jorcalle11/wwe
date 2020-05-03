@@ -1,15 +1,15 @@
 'use strict';
 
-const utils = require('./utils');
+const label = 'showsPage';
 
-module.exports = async function getShowsFromPage(page, site) {
+module.exports = async function getShowsFromPage(browser, site) {
+  console.time(label);
+
   const url = `${site}/shows`;
-
   console.log(`go to ${url}`);
-  await page.goto(url);
 
-  console.log('scrolling down...');
-  await utils.autoScroll(page);
+  const page = await browser.newPage();
+  await page.goto(url, { waitUntil: 'load', timeout: 0 });
 
   const categories = [
     {
@@ -39,17 +39,16 @@ module.exports = async function getShowsFromPage(page, site) {
     }
   ];
 
-  console.log('getting shows...');
   const promises = categories.map(category => {
     return getShows(page, { ...category, site });
   });
 
-  const showsByCategories = await Promise.all(promises);
-  return showsByCategories.flat().reduce((result, show) => {
-    const category = show.category;
-    result[category] = [...(result[category] || []), show];
-    return result;
-  }, {});
+  const response = await Promise.all(promises);
+  const shows = response.flat();
+  await page.close();
+
+  console.timeEnd(label);
+  return { shows };
 };
 
 async function getShows(page, context) {
