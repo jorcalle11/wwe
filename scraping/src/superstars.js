@@ -31,23 +31,15 @@ async function getSuperstarsFromPage(page, site) {
 
   await utils.autoScroll(page);
 
-  const superstars = await page.evaluate(
-    ctx => {
-      const anchors = document.querySelectorAll('.superstars--item--content');
-      const superstars = [];
+  const getItems = utils.getItemsFromSection(page);
+  const items = await getItems({
+    itemSelector: '.superstars--item--content'
+  });
 
-      for (const anchor of anchors) {
-        const img = anchor.querySelector('img');
-        const src = img.getAttribute('data-srcset');
-        const name = img.getAttribute('title');
-        const [avatar_url] = `${ctx.site}${src}`.split(' ');
-        superstars.push({ name, avatar_url });
-      }
-
-      return superstars;
-    },
-    { site }
-  );
+  const superstars = items.map(item => ({
+    name: item.title,
+    avatar_url: `${site}${item.url}`
+  }));
 
   console.timeEnd(label);
   return superstars;

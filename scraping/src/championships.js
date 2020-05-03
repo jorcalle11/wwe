@@ -1,30 +1,27 @@
 'use strict';
 
+const utils = require('./utils');
 const label = 'championships';
 
 module.exports = async function getChampionshipsFromPage(page, site) {
   console.time(label);
 
-  const championships = await page.evaluate(
-    ctx => {
-      const anchors = document.querySelectorAll('.superstars-belts--item');
-      const championships = [];
+  const getItems = utils.getItemsFromSection(page);
+  const items = await getItems({
+    itemSelector: '.superstars-belts--item',
+    descriptionSelector: '.superstars-belts--date'
+  });
 
-      for (const anchor of anchors) {
-        const img = anchor.querySelector('img');
-        const div = anchor.querySelector('.superstars-belts--date');
+  const championships = items.map(item => {
+    const [start_year, end_year] = item.description.split('-');
 
-        const src = img.getAttribute('data-srcset');
-        const name = img.getAttribute('title');
-        const [start_year, end_year] = div.textContent.split('-');
-        const [logo_url] = `${ctx.site}${src}`.split(' ');
-        championships.push({ name, logo_url, start_year, end_year });
-      }
-
-      return championships;
-    },
-    { site }
-  );
+    return {
+      name: item.title,
+      logo_url: `${site}${item.url}`,
+      start_year,
+      end_year
+    };
+  });
 
   console.timeEnd(label);
   return championships;
