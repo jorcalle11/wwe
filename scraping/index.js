@@ -2,6 +2,7 @@
 
 const CronJob = require('cron').CronJob;
 const scraping = require('./src/scraping');
+const { handleFatalError } = require('./src/utils');
 
 const cronTime = process.env.CRON_TIME || '* * * * *';
 const label = 'wwe-scraping';
@@ -12,9 +13,3 @@ job.start();
 console.log(`${label} scheduled to run at ${cronTime}`);
 process.on('uncaughtException', handleFatalError);
 process.on('unhandledRejection', handleFatalError);
-
-function handleFatalError(error) {
-  console.log(error.message);
-  console.error(error.stack);
-  process.exit(1);
-}
