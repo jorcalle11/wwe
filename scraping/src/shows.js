@@ -48,7 +48,7 @@ module.exports = async function getShowsFromPage(browser, site) {
   await page.close();
 
   console.timeEnd(label);
-  return { shows };
+  return shows;
 };
 
 async function getShows(page, context) {
