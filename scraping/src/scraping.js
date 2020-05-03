@@ -1,24 +1,23 @@
 'use strict';
 
 const puppeteer = require('puppeteer');
-const getShowsFromPage = require('./shows');
+const gotoShowsPage = require('./shows');
+const goToSuperstarsPage = require('./superstars');
+
 const site = 'https://www.wwe.com';
-const labels = {
-  project: 'wwe-scraping',
-  show: 'shows'
-};
+const label = 'wwe-scraping';
 
 module.exports = async function scraping() {
-  console.time(labels.project);
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+  console.time(label);
+  const browser = await puppeteer.launch({ timeout: 0 });
 
-  console.time(labels.show);
-  const shows = await getShowsFromPage(page, site);
-  console.timeEnd(labels.show);
+  const [shows, superstarsInfo] = await Promise.all([
+    gotoShowsPage(browser, site),
+    goToSuperstarsPage(browser, site)
+  ]);
 
+  const data = { shows, ...superstarsInfo };
   await browser.close();
-  console.timeEnd(labels.project);
-  console.log('that is it 🎉️ \n');
-  return shows;
+  console.timeEnd(label);
+  return data;
 };
