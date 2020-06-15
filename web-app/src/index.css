@@ -1,4 +1,14 @@
 body,
 #root {
+  --primaryColor: #1c2541;
+  --primaryText: #ffffff;
+  --secondaryColor: #0b132b;
+  --secondaryText: #aaaaaa;
+  --textLink: #6fffe9;
+  --accentColor: #6fffe9;
+
   margin: 0;
+  background-color: var(--primaryColor);
+  color: var(--primaryText);
+  font-family: 'Muli', sans-serif;
 }
