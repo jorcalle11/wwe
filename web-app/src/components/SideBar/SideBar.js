@@ -33,7 +33,7 @@ const paddingLeft = '15px';
 
 const Aside = styled.aside`
   background-color: var(--secondaryColor);
-  height: 100vh;
+  height: 100%;
 `;
 
 const Header = styled.header`

@@ -7,6 +7,7 @@ body,
   --textLink: #6fffe9;
   --accentColor: #6fffe9;
 
+  height: 100vh;
   margin: 0;
   background-color: var(--primaryColor);
   color: var(--primaryText);

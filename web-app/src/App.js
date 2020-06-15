@@ -7,6 +7,7 @@ import MainContent from './components/MainContent/MainContent';
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 200px auto;
+  height: 100%;
 `;
 
 const GridItem = styled.div`
