@@ -6,13 +6,11 @@ import MainContent from './components/MainContent/MainContent';
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 260px auto;
-  border: 2px solid black;
+  grid-template-columns: 200px auto;
 `;
 
 const GridItem = styled.div`
-  border: 2px solid aqua;
-  margin: 5px;
+  // border: 1px solid aqua;
 `;
 
 function App() {
