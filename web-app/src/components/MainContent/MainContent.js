@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const superstars = [
-  { name: 'Edge' },
-  { name: 'Randy Orton' },
-  { name: 'Set Rollings' },
-];
+const superstars = new Array(4).fill({ name: 'Randy Orton' });
 
 const filterOptions = ['All', 'Raw', 'Smack Down', 'NXT'];
 
@@ -13,48 +9,59 @@ export default function MainContent() {
   return (
     <Main>
       <Header>
-        <SearchBar />
+        <Title>Superstarts</Title>
+        <SearchBar placeholder="search superstart" />
         <FilterBar defaultValue="Raw">
           {filterOptions.map(FilterItem)}
         </FilterBar>
       </Header>
-      <CardContainer>{superstars.map(RenderCard)}</CardContainer>
+      <Wrapper>
+        <CardContainer>{superstars.map(RenderCard)}</CardContainer>
+      </Wrapper>
     </Main>
   );
 }
 
 const Main = styled.main`
-  border: 2px solid tomato;
+  height: 100%;
 `;
 
 const Header = styled.header`
-  border: 2px solid magenta;
-  margin: 5px;
+  padding: 30px 20px;
+  display: flex;
+`;
+
+const Title = styled.h2`
+  margin: 0px;
+  margin-right: 20px;
 `;
 
 const SearchBar = styled.input`
-  border: 1px solid lightSalmon;
-  margin: 5px;
+  margin-right: 20px;
 `;
 
 const FilterBar = styled.select`
-  border: 1px solid brown;
+  // border: 1px solid brown;
 `;
 
-const FilterItem = (item) => {
+const FilterItem = item => {
   return <option key={item}>{item}</option>;
 };
+
+const Wrapper = styled.div`
+  box-sizing: border-box;
+  height: calc(100% - 90px);
+  overflow: auto;
+`;
 
 const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
-  padding: 5px;
-  border: 1px solid olive;
-  margin: 5px;
+  padding: 15px 20px;
 `;
 
-const RenderCard = (item) => {
+const RenderCard = item => {
   return <Card key={item.name}>{item.name}</Card>;
 };
 
