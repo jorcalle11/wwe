@@ -1,24 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const superstars = new Array(4).fill({ name: 'Randy Orton' });
-
 const filterOptions = ['All', 'Raw', 'Smack Down', 'NXT'];
 
-export default function MainContent() {
+export default function MainContent({ entities = {}, currentEntity = '' }) {
+  function CardWrapper() {
+    if (currentEntity === 'users') {
+      return <Users users={entities.users} />;
+    }
+
+    if (currentEntity === 'posts') {
+      return <Posts posts={entities.posts} />;
+    }
+
+    return <Todos todos={entities.todos} />;
+  }
+
   return (
     <Main>
       <Header>
-        <Title>Superstarts</Title>
+        <Title>{currentEntity}</Title>
         <SearchBar placeholder="search superstart" />
         <FilterBar defaultValue="Raw">
           {filterOptions.map(FilterItem)}
         </FilterBar>
       </Header>
       <Wrapper>
-        <CardContainer>{superstars.map(RenderCard)}</CardContainer>
+        <CardWrapper />
       </Wrapper>
     </Main>
+  );
+}
+
+function Todos({ todos = [] }) {
+  return (
+    <CardContainer>
+      {todos.map(todo => {
+        return <Card key={todo.title}>{todo.title}</Card>;
+      })}
+    </CardContainer>
+  );
+}
+
+function Users({ users = [] }) {
+  return (
+    <CardContainer>
+      {users.map(user => {
+        return <Card key={user.name}>{user.name}</Card>;
+      })}
+    </CardContainer>
+  );
+}
+
+function Posts({ posts = [] }) {
+  return (
+    <CardContainer>
+      {posts.map(post => {
+        return <Card key={post.title}>{post.title}</Card>;
+      })}
+    </CardContainer>
   );
 }
 

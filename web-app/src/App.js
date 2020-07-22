@@ -15,16 +15,43 @@ const GridItem = styled.div`
 `;
 
 function App() {
+  const [currentTab, setCurrentTab] = React.useState('todos');
+  const [entities, dispatch] = React.useReducer(reducer, {
+    todos: [],
+    users: [],
+    posts: []
+  });
+
   return (
     <GridContainer>
       <GridItem>
-        <Sidebar />
+        <Sidebar
+          currentTab={currentTab}
+          setCurrentTab={setCurrentTab}
+          dispatch={dispatch}
+        />
       </GridItem>
       <GridItem>
-        <MainContent />
+        <MainContent currentEntity={currentTab} entities={entities} />
       </GridItem>
     </GridContainer>
   );
+}
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'TODOS': {
+      return { ...state, todos: action.data };
+    }
+    case 'USERS': {
+      return { ...state, users: action.data };
+    }
+    case 'POSTS': {
+      return { ...state, posts: action.data };
+    }
+    default:
+      return state;
+  }
 }
 
 export default App;

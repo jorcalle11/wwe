@@ -1,7 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function SideBar() {
+import Api from '../../apis';
+
+export default function SideBar({ dispatch, setCurrentTab }) {
+  const selectTab = event => {
+    event.preventDefault();
+    const entity = event.target.text;
+    setCurrentTab(entity.toLowerCase());
+
+    Api.fetchDataByEntity(entity)
+      .then(data => dispatch({ type: entity.toUpperCase(), data }))
+      .catch(error => console.error(error));
+  };
+
+  React.useEffect(() => {
+    console.log('runnning effect!');
+    Api.fetchDataByEntity().then(data => dispatch({ type: 'TODOS', data }));
+  }, []);
+
   return (
     <Aside>
       <Header>
@@ -15,13 +32,19 @@ export default function SideBar() {
       <Navigation>
         <Ul>
           <NavigationItem>
-            <A href="#">Superstarts</A>
+            <A href="#" onClick={selectTab}>
+              Todos
+            </A>
           </NavigationItem>
           <NavigationItem>
-            <A href="#">Shows</A>
+            <A href="#" onClick={selectTab}>
+              Users
+            </A>
           </NavigationItem>
           <NavigationItem>
-            <A href="#"> Championships</A>
+            <A href="#" onClick={selectTab}>
+              Posts
+            </A>
           </NavigationItem>
         </Ul>
       </Navigation>
@@ -71,6 +94,7 @@ const NavigationItem = styled.li`
 const A = styled.a`
   color: var(--secondaryText);
   text-decoration: none;
+  display: block;
 
   &&:hover {
     color: var(--primaryText);
