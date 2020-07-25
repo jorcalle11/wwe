@@ -23,6 +23,7 @@ Header.propTypes = {
 };
 
 const HeaderWrapper = styled.header`
+  grid-area: header;
   padding: 30px 20px;
   display: flex;
 `;

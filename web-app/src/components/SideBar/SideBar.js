@@ -29,8 +29,8 @@ export default function SideBar({ onSelectNavItem }) {
 const paddingLeft = '15px';
 
 const Aside = styled.aside`
+  grid-area: sidebar;
   background-color: var(--secondaryColor);
-  height: 100%;
 `;
 
 const Header = styled.header`

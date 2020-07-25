@@ -10,9 +10,9 @@ function App() {
 
   return (
     <Grid>
+      <Header selectedNavItem={selectedNavItem} />
       <Sidebar onSelectNavItem={setSelectedNavItem} />
       <Main>
-        <Header selectedNavItem={selectedNavItem} />
         <CardList selectedNavItem={selectedNavItem} />
       </Main>
     </Grid>
@@ -20,13 +20,19 @@ function App() {
 }
 
 const Grid = styled.div`
+  height: 100%;
   display: grid;
   grid-template-columns: 200px auto;
-  height: 100%;
+  grid-template-rows: 100px auto;
+  grid-template-areas:
+    'sidebar header header'
+    'sidebar main main'
+    'sidebar main main';
 `;
 
 const Main = styled.main`
-  height: 100%;
+  grid-area: main;
+  overflow-y: auto;
 `;
 
 export default App;
