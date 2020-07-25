@@ -2,29 +2,37 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Sidebar from './components/SideBar';
-import MainContent from './components/MainContent/MainContent';
-
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: 200px auto;
-  height: 100%;
-`;
-
-const GridItem = styled.div`
-  // border: 1px solid aqua;
-`;
+import Header from './components/Header';
+import CardList from './components/CardList';
 
 function App() {
+  const [selectedNavItem, setSelectedNavItem] = React.useState('todos');
+
   return (
-    <GridContainer>
-      <GridItem>
-        <Sidebar />
-      </GridItem>
-      <GridItem>
-        <MainContent />
-      </GridItem>
-    </GridContainer>
+    <Grid>
+      <Header selectedNavItem={selectedNavItem} />
+      <Sidebar onSelectNavItem={setSelectedNavItem} />
+      <Main>
+        <CardList selectedNavItem={selectedNavItem} />
+      </Main>
+    </Grid>
   );
 }
+
+const Grid = styled.div`
+  height: 100%;
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 100px auto;
+  grid-template-areas:
+    'sidebar header header'
+    'sidebar main main'
+    'sidebar main main';
+`;
+
+const Main = styled.main`
+  grid-area: main;
+  overflow-y: auto;
+`;
 
 export default App;

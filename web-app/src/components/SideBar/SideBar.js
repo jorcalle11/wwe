@@ -1,28 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function SideBar() {
+export default function SideBar({ onSelectNavItem }) {
+  const selectItem = event => {
+    const entity = event.target.textContent.toLowerCase();
+    onSelectNavItem(entity);
+  };
+
   return (
     <Aside>
       <Header>
         <Title>
-          <A href="#" style={{ color: 'var(--primaryText)' }}>
-            WWE
-          </A>
+          <A href="#">WWE</A>
         </Title>
         <SubTitle>World Westring Entertainment</SubTitle>
       </Header>
       <Navigation>
         <Ul>
-          <NavigationItem>
-            <A href="#">Superstarts</A>
-          </NavigationItem>
-          <NavigationItem>
-            <A href="#">Shows</A>
-          </NavigationItem>
-          <NavigationItem>
-            <A href="#"> Championships</A>
-          </NavigationItem>
+          <NavigationItem onClick={selectItem}>Todos</NavigationItem>
+          <NavigationItem onClick={selectItem}>Users</NavigationItem>
+          <NavigationItem onClick={selectItem}>Posts</NavigationItem>
         </Ul>
       </Navigation>
     </Aside>
@@ -32,8 +29,8 @@ export default function SideBar() {
 const paddingLeft = '15px';
 
 const Aside = styled.aside`
+  grid-area: sidebar;
   background-color: var(--secondaryColor);
-  height: 100%;
 `;
 
 const Header = styled.header`
@@ -66,13 +63,16 @@ const Ul = styled.ul`
 const NavigationItem = styled.li`
   list-style-type: none;
   padding: 5px 0px;
-`;
-
-const A = styled.a`
   color: var(--secondaryText);
-  text-decoration: none;
+  cursor: pointer;
 
   &&:hover {
     color: var(--primaryText);
   }
+`;
+
+const A = styled.a`
+  text-decoration: none;
+  display: block;
+  color: var(--primaryText);
 `;
