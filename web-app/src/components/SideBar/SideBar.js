@@ -1,51 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Api from '../../apis';
-
-export default function SideBar({ dispatch, setCurrentTab }) {
-  const selectTab = event => {
-    event.preventDefault();
-    const entity = event.target.text;
-    setCurrentTab(entity.toLowerCase());
-
-    Api.fetchDataByEntity(entity)
-      .then(data => dispatch({ type: entity.toUpperCase(), data }))
-      .catch(error => console.error(error));
+export default function SideBar({ onSelectNavItem }) {
+  const selectItem = event => {
+    const entity = event.target.textContent.toLowerCase();
+    onSelectNavItem(entity);
   };
-
-  React.useEffect(() => {
-    console.log('runnning effect!');
-    Api.fetchDataByEntity().then(data => dispatch({ type: 'TODOS', data }));
-  }, []);
 
   return (
     <Aside>
       <Header>
         <Title>
-          <A href="#" style={{ color: 'var(--primaryText)' }}>
-            WWE
-          </A>
+          <A href="#">WWE</A>
         </Title>
         <SubTitle>World Westring Entertainment</SubTitle>
       </Header>
       <Navigation>
         <Ul>
-          <NavigationItem>
-            <A href="#" onClick={selectTab}>
-              Todos
-            </A>
-          </NavigationItem>
-          <NavigationItem>
-            <A href="#" onClick={selectTab}>
-              Users
-            </A>
-          </NavigationItem>
-          <NavigationItem>
-            <A href="#" onClick={selectTab}>
-              Posts
-            </A>
-          </NavigationItem>
+          <NavigationItem onClick={selectItem}>Todos</NavigationItem>
+          <NavigationItem onClick={selectItem}>Users</NavigationItem>
+          <NavigationItem onClick={selectItem}>Posts</NavigationItem>
         </Ul>
       </Navigation>
     </Aside>
@@ -89,14 +63,16 @@ const Ul = styled.ul`
 const NavigationItem = styled.li`
   list-style-type: none;
   padding: 5px 0px;
-`;
-
-const A = styled.a`
   color: var(--secondaryText);
-  text-decoration: none;
-  display: block;
+  cursor: pointer;
 
   &&:hover {
     color: var(--primaryText);
   }
+`;
+
+const A = styled.a`
+  text-decoration: none;
+  display: block;
+  color: var(--primaryText);
 `;
