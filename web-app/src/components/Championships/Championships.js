@@ -41,14 +41,14 @@ export default function Championships() {
   }
 
   return (
-    <CardGrid>
+    <CardGrid size="medium">
       {championships.map(championship => (
         <Card
           key={championship.name}
           title={championship.name}
           description={`${championship.start_year} - ${championship.end_year}`}
           imageSource={championship.logo_url}
-          style={{ height: '220px' }}
+          cardHeight="350px"
         />
       ))}
     </CardGrid>
