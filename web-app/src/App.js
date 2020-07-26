@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Sidebar from './components/SideBar';
 import Header from './components/Header';
-import CardList from './components/CardList';
+import Content from './components/Content';
 import { ENTITIES } from './constants';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <Header selectedNavItem={selectedNavItem} />
       <Sidebar onSelectNavItem={setSelectedNavItem} />
       <Main>
-        <CardList selectedNavItem={selectedNavItem} />
+        <Content selectedNavItem={selectedNavItem} />
       </Main>
     </Grid>
   );
