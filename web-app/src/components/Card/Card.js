@@ -2,9 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default function Card({ title, description, imageSource, width = 310 }) {
+export default function Card({
+  title,
+  style,
+  description,
+  imageSource,
+  width = 310
+}) {
   return (
-    <Article>
+    <Article style={style}>
       <Picture>
         <img src={imageSource} alt={title} width={width} />
       </Picture>
