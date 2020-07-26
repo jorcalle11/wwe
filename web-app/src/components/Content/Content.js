@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import Champions from '../Champions';
 import Championships from '../Championships';
+import Shows from '../Shows';
+import Superstars from '../Superstars';
 import { ENTITIES } from '../../constants';
 
 export default function Content({ selectedNavItem }) {
@@ -11,11 +13,11 @@ export default function Content({ selectedNavItem }) {
   }
 
   if (selectedNavItem === ENTITIES.SHOWS) {
-    return ENTITIES.SHOWS;
+    return <Shows />;
   }
 
-  if (selectedNavItem === ENTITIES.SUPERSTARTS) {
-    return ENTITIES.SUPERSTARTS;
+  if (selectedNavItem === ENTITIES.SUPERSTARS) {
+    return <Superstars />;
   }
 
   return <Champions />;
