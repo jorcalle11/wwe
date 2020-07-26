@@ -4,15 +4,15 @@ import styled from 'styled-components';
 
 export default function Card({
   title,
-  style,
   description,
   imageSource,
-  width = 310
+  imageWidth = '100%',
+  cardHeight = 'auto'
 }) {
   return (
-    <Article style={style}>
+    <Article height={cardHeight}>
       <Picture>
-        <img src={imageSource} alt={title} width={width} />
+        <img src={imageSource} alt={title} width={imageWidth} />
       </Picture>
       <Footer>
         <p>{title}</p>
@@ -30,7 +30,11 @@ Card.propTypes = {
 
 const Article = styled.article`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--secondaryColor);
+  height: ${props => props.height};
 `;
 
 const Picture = styled.picture`
@@ -49,7 +53,7 @@ const Footer = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0px 10px;
+  padding: 30px 0px 10px 10px;
 
   p {
     margin: 0;
