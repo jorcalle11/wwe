@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { ENTITIES } from '../../constants';
+
 export default function SideBar({ onSelectNavItem }) {
   const selectItem = event => {
     const entity = event.target.textContent.toLowerCase();
@@ -17,9 +19,11 @@ export default function SideBar({ onSelectNavItem }) {
       </Header>
       <Navigation>
         <Ul>
-          <NavigationItem onClick={selectItem}>Todos</NavigationItem>
-          <NavigationItem onClick={selectItem}>Users</NavigationItem>
-          <NavigationItem onClick={selectItem}>Posts</NavigationItem>
+          {Object.values(ENTITIES).map(entity => (
+            <NavigationItem key={entity} onClick={selectItem}>
+              {entity}
+            </NavigationItem>
+          ))}
         </Ul>
       </Navigation>
     </Aside>
@@ -61,6 +65,7 @@ const Ul = styled.ul`
 `;
 
 const NavigationItem = styled.li`
+  text-transform: capitalize;
   list-style-type: none;
   padding: 5px 0px;
   color: var(--secondaryText);

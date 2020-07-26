@@ -1,5 +1,5 @@
 export async function fetchDataByEntity(entity = 'todos', options = {}) {
-  const url = `https://jsonplaceholder.typicode.com/${entity}`;
+  const url = `${process.env.REACT_APP_API_URL}/${entity}`;
   const response = await fetch(url, options);
 
   if (!response.ok) {

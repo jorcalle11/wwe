@@ -2,12 +2,16 @@
 
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 
 const app = express();
 const useLogger = JSON.parse(process.env.USE_LOGGER || 'false');
 const fakeDataPath = path.resolve(__dirname, '../', 'scraping/data.json');
+
+// enable all CORS requests
+app.use(cors());
 
 // enabling HTTP log requests
 if (useLogger) {
