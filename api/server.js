@@ -1,11 +1,18 @@
 'use strict';
 
 const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const fs = require('fs');
 
 const app = express();
+const useLogger = JSON.parse(process.env.USE_LOGGER || 'false');
 const fakeDataPath = path.resolve(__dirname, '../', 'scraping/data.json');
+
+// enabling HTTP log requests
+if (useLogger) {
+  app.use(morgan('dev'));
+}
 
 app.get('/', (req, res) => res.send({ message: 'wwe api' }));
 app.get('/shows', readFakeData('shows'), (req, res) => res.send(req.shows));
