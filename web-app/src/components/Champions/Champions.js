@@ -1,48 +1,23 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 
 import CardGrid from '../CardGrid';
 import Card from '../Card';
 import Error from '../Error';
 import Loading from '../Loading';
-import Api from '../../apis';
+import { getFetcherWithAbort } from '../../apis';
 import { ENTITIES } from '../../constants';
 
 export default function Champions() {
-  const [champions, setChampions] = React.useState([]);
-  const [status, setStatus] = React.useState('started');
-  const [error, setError] = React.useState(null);
+  const { CHAMPIONS } = ENTITIES;
+  const query = useQuery(CHAMPIONS, getFetcherWithAbort(CHAMPIONS));
 
-  React.useEffect(() => {
-    const abortController = new AbortController();
-
-    Api.fetchDataByEntity(ENTITIES.CHAMPIONS, {
-      signal: abortController.signal
-    })
-      .then(champions => {
-        setStatus('resolved');
-        setChampions(champions);
-      })
-      .catch(error => {
-        setStatus('rejected');
-        setError(error.message);
-      });
-
-    return () => {
-      abortController.abort();
-    };
-  }, []);
-
-  if (status === 'started') {
-    return <Loading />;
-  }
-
-  if (status === 'rejected') {
-    return <Error message={error} />;
-  }
+  if (query.isLoading) return <Loading />;
+  if (query.isError) return <Error message={query.error.message} />;
 
   return (
     <CardGrid>
-      {champions.map(champion => {
+      {query.data.map(champion => {
         return (
           <Card
             key={champion.name}
