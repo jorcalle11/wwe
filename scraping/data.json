@@ -80,18 +80,6 @@
         "category": "pay_per_view"
       },
       {
-        "name": "WrestleMania",
-        "logo_url": "https://www.wwe.com/f/styles/wwe_show_logo_network_l/public/all/2019/09/WrestleMania36--22b52b47beb16ab596b722067ebeec94.png",
-        "schedule": null,
-        "category": "pay_per_view"
-      },
-      {
-        "name": "Money in the Bank",
-        "logo_url": "https://www.wwe.com/f/styles/wwe_show_logo_network_l/public/all/2018/06/20180608_MITB_2018_Logo--7c8ce12e113e0c49b7e8dbae32c388e4.png",
-        "schedule": null,
-        "category": "pay_per_view"
-      },
-      {
         "name": "WWE Stomping Grounds",
         "logo_url": "https://www.wwe.com/f/styles/wwe_show_logo_network_l/public/all/2019/06/Stomping_Grounds--784b05aa81ab7ac678e4e92732d7ceb8.png",
         "schedule": null,
@@ -676,30 +664,6 @@
         "logo_url": "https://www.wwe.com/f/styles/wwe_16_9_xs/public/championship/Belt_Retired/WCW_Heavyweight.png",
         "start_year": "1991",
         "end_year": "2001"
-      },
-      {
-        "name": "ECW Championship",
-        "logo_url": "https://www.wwe.com/f/styles/wwe_16_9_xs/public/championship/Belt_Retired/ECW_World_Heavyweight_Championship.png",
-        "start_year": "1994",
-        "end_year": "2010"
-      },
-      {
-        "name": "ECW World Television Championship",
-        "logo_url": "https://www.wwe.com/f/styles/wwe_16_9_xs/public/championship/Belt_Retired/ECW_TV_World_Championship.png",
-        "start_year": "1992",
-        "end_year": "2001"
-      },
-      {
-        "name": "Universal Championship",
-        "logo_url": "https://www.wwe.com/f/styles/wwe_16_9_xs/public/all/2019/11/Universal_Championship_SD--384d68e1f2cff0dc98447b52a360bd0c.png",
-        "start_year": "2016",
-        "end_year": "Present"
-      },
-      {
-        "name": "WWE Championship",
-        "logo_url": "https://www.wwe.com/f/styles/wwe_16_9_xs/public/championship/Belt/WWE_World_Heavyweight_Championship.png",
-        "start_year": "1963",
-        "end_year": "Present"
       }
     ],
     "superstars": [
