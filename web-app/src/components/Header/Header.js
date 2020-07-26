@@ -29,6 +29,7 @@ const HeaderWrapper = styled.header`
 `;
 
 const Title = styled.h2`
+  text-transform: capitalize;
   margin: 0px;
   margin-right: 20px;
 `;
