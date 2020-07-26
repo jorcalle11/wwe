@@ -1,6 +1,9 @@
 import React from 'react';
 
+import CardGrid from '../CardGrid';
 import Card from '../Card';
+import Error from '../Error';
+import Loading from '../Loading';
 import Api from '../../apis';
 import { ENTITIES } from '../../constants';
 
@@ -38,7 +41,7 @@ export default function Champions() {
   }
 
   return (
-    <>
+    <CardGrid>
       {champions.map(champion => {
         return (
           <Card
@@ -49,9 +52,6 @@ export default function Champions() {
           />
         );
       })}
-    </>
+    </CardGrid>
   );
 }
-
-const Loading = () => <>Loading...</>;
-const Error = ({ message }) => <>{message}</>;
