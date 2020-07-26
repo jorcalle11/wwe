@@ -4,9 +4,12 @@ import styled from 'styled-components';
 import Sidebar from './components/SideBar';
 import Header from './components/Header';
 import CardList from './components/CardList';
+import { ENTITIES } from './constants';
 
 function App() {
-  const [selectedNavItem, setSelectedNavItem] = React.useState('todos');
+  const [selectedNavItem, setSelectedNavItem] = React.useState(
+    ENTITIES.CHAMPIONS
+  );
 
   return (
     <Grid>
