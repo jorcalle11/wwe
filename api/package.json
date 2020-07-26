@@ -1,0 +1,29 @@
+{
+  "name": "wwe-api",
+  "version": "1.0.0",
+  "description": "Simple Api to serve WWE resources",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "node index.js",
+    "dev": "cross-env NODE_ENV=development USE_LOGGER=true nodemon index.js"
+  },
+  "keywords": [
+    "wwe-api"
+  ],
+  "author": "Jorge Calle @jorcalle11",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
+  }
+}
